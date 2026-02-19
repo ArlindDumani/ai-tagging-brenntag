@@ -1,16 +1,22 @@
 import csv
+import os
 import pandas as pd
 import json
 import time
 from pathlib import Path
 from datetime import datetime
 from urllib.parse import urlparse, parse_qs
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 from youtube_transcript_api import YouTubeTranscriptApi
 
+load_dotenv()
+
 # --- KONFIGURATION ---
-API_KEY = "AIzaSyDdZkfCbMfS6czjdhHSJJMx2uZX-jEAKWA"
+API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
+if not API_KEY:
+    raise SystemExit("Fehler: GEMINI_API_KEY fehlt. Bitte in .env setzen (siehe .env.example).")
 FILE_PATH_EXCEL = r"V:\CURE\Operations\Clients\Brenntag SE\Talkwalker Tagging\Input\tw_export.xlsx"
 FILE_PATH_TXT = r"V:\CURE\Operations\Clients\Brenntag SE\Talkwalker Tagging\Tag-Description\generated_tag_instructions_v3.txt"
 LOG_FILE = r"V:\CURE\Operations\Clients\Brenntag SE\Talkwalker Tagging\Logfiles\logs_processed_results-brenntag.csv"
