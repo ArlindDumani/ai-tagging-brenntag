@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Venv
+brenntag-tag/
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# Umgebungsvariablen / Secrets (falls du später .env nutzt)
+.env
+.env.local
+
+# Optional: Lokale Daten/Logs nicht hochladen (Zeile bei Bedarf auskommentieren)
+# *.xlsx
+# logs_processed_results*.csv
+.env
+.env.local
