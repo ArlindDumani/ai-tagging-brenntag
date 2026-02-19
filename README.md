@@ -15,12 +15,11 @@ KI-gestütztes Tagging von Talkwalker-Exporten (Excel) für Brenntag. Nutzt Goog
 
 ## Konfiguration
 
-- **API-Key:** Wird aus der Umgebungsvariable `GEMINI_API_KEY` gelesen (nicht im Code).  
-  Die **echte** Konfigurationsdatei heißt **`.env`**. Einmalig einrichten:
-  ```bash
-  copy env .env
+- **API-Key:** Wird aus **`.env`** gelesen (nicht im Code). Datei `.env` im Projektordner anlegen mit:
   ```
-  In **`.env`** den Platzhalter durch deinen echten Key ersetzen. Die Datei `.env` bleibt lokal; die Vorlage **`env`** liegt im Repo.
+  GEMINI_API_KEY=dein-api-key
+  ```
+  Key z. B. unter https://aistudio.google.com/apikey erzeugen. Die Datei `.env` bleibt lokal und wird nicht ins Repo committed.
 - **Pfade** (Excel, Log, Output, Instruction-Datei) in `main.py` anpassen.
 
 ## Ablauf

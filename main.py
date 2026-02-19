@@ -16,7 +16,7 @@ load_dotenv()
 # --- KONFIGURATION ---
 API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 if not API_KEY:
-    raise SystemExit("Fehler: GEMINI_API_KEY fehlt. Bitte in .env setzen (Vorlage: env).")
+    raise SystemExit("Fehler: GEMINI_API_KEY fehlt. Bitte .env anlegen mit: GEMINI_API_KEY=dein-key")
 FILE_PATH_EXCEL = r"V:\CURE\Operations\Clients\Brenntag SE\Talkwalker Tagging\Input\tw_export.xlsx"
 FILE_PATH_TXT = r"V:\CURE\Operations\Clients\Brenntag SE\Talkwalker Tagging\Tag-Description\generated_tag_instructions_v3.txt"
 LOG_FILE = r"V:\CURE\Operations\Clients\Brenntag SE\Talkwalker Tagging\Logfiles\logs_processed_results-brenntag.csv"
