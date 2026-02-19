@@ -1,0 +1,7 @@
+# Google Gemini API Key (https://aistudio.google.com/apikey)
+#
+# Vorlage: Kopieren nach .env und echten Key eintragen:
+#   copy env .env
+# Die Datei .env wird nicht ins Repo hochgeladen.
+#
+GEMINI_API_KEY=dein-api-key-hier
