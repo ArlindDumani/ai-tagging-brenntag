@@ -167,8 +167,12 @@ def main():
 
     if skipped_log:
         print(f"{skipped_log} Zeilen übersprungen (URL bereits in Log-Datei).")
+    if not rows_to_process:
+        print("Keine neuen Zeilen zu verarbeiten. Keine Datei erstellt.")
+        return
     print(f"Verarbeite {len(rows_to_process)} Zeilen in {BATCH_SIZE}er Batches...")
 
+    any_tagged = False
     for i in range(0, len(rows_to_process), BATCH_SIZE):
         batch = rows_to_process[i : i + BATCH_SIZE]
         ki_input = [(str(item[0]), str(item[1])) for item in batch]
@@ -184,6 +188,7 @@ def main():
                 time.sleep(RETRY_WAIT_SEC)
 
         if results:
+            any_tagged = True
             processing_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             with open(LOG_FILE, "a", newline="", encoding="utf-8") as log_file:
                 writer = csv.writer(log_file, delimiter=LOG_SEP)
@@ -202,9 +207,12 @@ def main():
 
         time.sleep(12)  # Sicherheitspause für Free-Tier
 
-    out_path = Path(OUTPUT_DIR) / f"Brenntag_Batch_Result_{datetime.now().strftime('%d%m_%H%M')}.xlsx"
-    df.to_excel(out_path, index=False)
-    print(f"Fertig! Datei: {out_path}")
+    if any_tagged:
+        out_path = Path(OUTPUT_DIR) / f"Brenntag_Batch_Result_{datetime.now().strftime('%d%m_%H%M')}.xlsx"
+        df.to_excel(out_path, index=False)
+        print(f"Fertig! Datei erstellt: {out_path}")
+    else:
+        print("Nichts getaggt (z. B. alle Batches fehlgeschlagen). Keine Datei erstellt.")
 
 if __name__ == "__main__":
     main()
