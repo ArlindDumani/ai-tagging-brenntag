@@ -1,3 +1,6 @@
+# Windows
+nul
+
 # Python
 __pycache__/
 *.py[cod]
